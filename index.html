@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rakshanda &amp; Vikrant - Wedding Invitation</title>
+    <meta name="description"
+        content="You are cordially invited to the wedding celebration of Rakshanda &amp; Vikrant on Saturday, 21 November 2026 at Amara Resorts, Meerut." />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Ovo&family=Great+Vibes&display=swap"
+        rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'Georgia', 'serif'],
+                        ovo: ['Ovo', 'Georgia', 'serif'],
+                        name: ['"Great Vibes"', 'cursive']
+                    },
+                    colors: {
+                        cream: '#F9F0E0', gold: '#A67D2B', golddark: '#7A5C1E', goldmid: '#B48C3D',
+                        maroon: '#5A0F1B', muted: '#6A5140', softbg: '#F3EAD8', bg2: '#E8DDCF'
+                    },
+                    keyframes: {
+                        fadein: { from: { opacity: 0, transform: 'translateY(18px)' }, to: { opacity: 1, transform: 'translateY(0)' } },
+                        pulse2: { '0%,100%': { opacity: .45, letterSpacing: '.26em' }, '50%': { opacity: 1, letterSpacing: '.30em' } },
+                        chev: { '0%,100%': { transform: 'rotate(45deg) translate(0,0)', opacity: .5 }, '50%': { transform: 'rotate(45deg) translate(2px,2px)', opacity: 1 } },
+                        ink: { from: { clipPath: 'inset(0 100% 0 0)' }, to: { clipPath: 'inset(0 0 0 0)' } },
+                        shimmer: { '0%': { backgroundPosition: '100% 0' }, '50%': { backgroundPosition: '0% 0' }, '100%': { backgroundPosition: '100% 0' } }
+                    },
+                    animation: {
+                        fadein: 'fadein 2s ease both',
+                        tapin: 'fadein 1.2s ease .8s both',
+                        pulse2: 'pulse2 2.4s ease-in-out 1.6s infinite',
+                        chev: 'chev 2.4s ease-in-out 1.9s infinite',
+                        chev2: 'chev 2s ease-in-out 3s infinite',
+                        inkshimmer: 'ink 1.1s cubic-bezier(.4,0,.2,1) forwards, shimmer 4.5s ease-in-out 1.1s infinite'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="m-0 bg-cream font-ovo [-webkit-tap-highlight-color:transparent]">
+
+    <audio id="weiAudio" loop>
+        <source src="assets/Einaudi_ Divenire.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- ENVELOPE + INTRO VIDEO (same box, same center => no shift) -->
+    <div id="weiOverlay"
+        class="fixed inset-0 z-[99999] bg-cream flex items-center justify-center cursor-pointer select-none opacity-100 transition-opacity duration-[1400ms] ease-in-out">
+
+        <div class="relative w-full max-w-[400px]">
+            <video id="weiVideo" src="assets/1782224012851_1_m6ww6v.mp4" muted playsinline preload="auto"
+                disablePictureInPicture
+                class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 block w-full h-auto opacity-0"></video>
+
+            <img id="weiImg" draggable="false" alt="Open your invitation" src="./assets/intro-thumbnail.png"
+                class="relative z-10 block w-full h-auto" />
+        </div>
+
+        <div id="weiTapWrap" class="absolute inset-x-0 bottom-[28%] z-20 flex justify-center pointer-events-none">
+            <div class="flex flex-col items-center gap-1.5 animate-tapin">
+                <div
+                    class="w-2.5 h-2.5 rotate-45 border-r-[1.5px] border-b-[1.5px] border-[rgba(140,100,60,.6)] animate-chev">
+                </div>
+                <div
+                    class="font-cinzel text-[11px] tracking-[.26em] uppercase text-[rgba(140,100,60,.75)] whitespace-nowrap animate-pulse2">
+                    Tap to open</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUDIO BUTTON -->
+    <div id="weiAudioBtn" role="button" tabindex="0" aria-label="Toggle music"
+        class="invisible opacity-0 fixed right-5 bottom-5 w-[52px] h-[52px] z-[2147483647] flex items-center justify-center rounded-full bg-maroon cursor-pointer shadow-[0_4px_12px_rgba(0,0,0,.22)] transition-opacity duration-300">
+        <svg id="weiIconPause" class="w-6 h-6 fill-white block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <rect x="6" y="5" width="4" height="14" rx="1" />
+            <rect x="14" y="5" width="4" height="14" rx="1" />
+        </svg>
+        <svg id="weiIconPlay" class="w-6 h-6 fill-white hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <polygon points="5,3 19,12 5,21" />
+        </svg>
+    </div>
+
+    <!-- MAIN PAGE -->
+    <div id="page-wrap"
+        class="max-w-[480px] min-h-screen mx-auto relative overflow-x-hidden bg-cream shadow-[0_0_60px_rgba(0,0,0,.08)]">
+
+        <!-- HERO -->
+        <section id="hero"
+            class="relative w-full min-h-[100svh] overflow-hidden flex flex-col items-center justify-center">
+            <video id="heroBg" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+                <source src="assets/Swans2_1_qwzsod.mov" type="video/mp4" />
+            </video>
+            <div
+                class="absolute inset-0 z-[1] bg-[linear-gradient(to_bottom,rgba(249,240,224,.5)_0%,rgba(249,240,224,.1)_38%,rgba(249,240,224,.7)_100%)]">
+            </div>
+
+            <div class="relative z-[2] w-full px-6 pt-10 pb-16 text-center">
+                <!-- GANESHA -->
+                <div class="flex justify-center mb-3 animate-fadein" style="animation-delay:.1s">
+                    <img src="assets/Golden Ganesha Wedding Invitation Illustration.png"
+                        alt="Lord Ganesha"
+                        class="w-[80px] h-auto drop-shadow-[0_2px_8px_rgba(166,125,43,.25)]" />
+                </div>
+
+                <p class="font-cinzel text-[clamp(.68rem,2.4vw,.78rem)] text-gold tracking-[.16em] uppercase animate-fadein"
+                    style="animation-delay:.6s">&#10022; &nbsp; With the Blessings of Lord Ganesha &nbsp; &#10022;</p>
+
+
+                <p class="font-ovo text-[clamp(.78rem,2.8vw,.88rem)] text-[#8a6540] mt-2.5 leading-relaxed animate-fadein"
+                    style="animation-delay:1.9s">
+                    Sirohi Family joyfully invites you<br />to grace the auspicious wedding of their beloved
+                    daughter.
+                </p>
+
+                <div class="mt-5">
+                    <div class="font-name text-[clamp(4.5rem,19vw,6.8rem)] font-normal leading-[.78] text-gold [text-shadow:0_1px_5px_rgba(166,125,43,.12)] animate-fadein"
+                        style="animation-delay:.3s">Rakshanda</div>
+                    <span
+                        class="block my-2.5 font-name text-[clamp(2.5rem,10vw,3.8rem)] font-normal leading-[.7] text-golddark animate-fadein"
+                        style="animation-delay:.6s">&amp;</span>
+                    <div class="font-name text-[clamp(4.5rem,19vw,6.8rem)] font-normal leading-[.78] text-gold [text-shadow:0_1px_5px_rgba(166,125,43,.12)] animate-fadein"
+                        style="animation-delay:.3s">Vikrant</div>
+                </div>
+
+                <p class="font-ovo text-[clamp(.88rem,3.2vw,1rem)] text-golddark mt-6 leading-relaxed animate-fadein"
+                    style="animation-delay:1.5s">
+                    Two Souls &middot; One Destiny<br />A Lifetime Written in the Stars
+                </p>
+
+                <p class="font-ovo text-[clamp(.9rem,3.5vw,1.2rem)] text-gold tracking-[.22em] uppercase animate-fadein mt-1"
+                    style="animation-delay:.9s">Wedding Day</p>
+                <p class="font-ovo text-[clamp(.85rem,3vw,1.05rem)] text-muted tracking-[.18em] mt-1 animate-fadein"
+                    style="animation-delay:1.2s">21 &middot; 11 &middot; 2026</p>
+
+                <div class="mt-[38px] flex flex-col items-center gap-[5px] animate-fadein" style="animation-delay:2.4s">
+                    <span
+                        class="font-cinzel text-[9px] tracking-[.24em] text-[rgba(140,100,60,.55)] uppercase">Scroll</span>
+                    <div
+                        class="w-[9px] h-[9px] rotate-45 border-r-[1.5px] border-b-[1.5px] border-[rgba(140,100,60,.5)] animate-chev2">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAMILIES -->
+        <section
+            class="reveal w-full px-7 py-[52px] bg-softbg opacity-0 translate-y-[26px] transition duration-[750ms] ease-in-out">
+            <p
+                class="font-cinzel text-gold text-[clamp(1.45rem,5.5vw,1.85rem)] font-normal tracking-[.04em] text-center mb-1">
+                The Two Families</p>
+            <div class="text-center text-gold/50 text-base tracking-[.5em] mt-1">&#10022; &#10022; &#10022;</div>
+            <div class="w-12 h-px bg-gold/40 mx-auto mt-4 mb-8"></div>
+
+            <div class="grid grid-cols-2 gap-5 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="font-cinzel text-gold text-[.82rem] tracking-[.06em] mb-2">The Bride</div>
+                    <div class="w-6 h-px bg-gold/40 mx-auto mb-3"></div>
+                    <div class="font-name text-[2rem] text-gold leading-none mb-2">Rakshanda</div>
+                    <p class="font-ovo text-[.78rem] text-muted leading-[1.8]">
+                        Daughter of<br />
+                        <span class="text-golddark font-semibold">Mrs. Poonam</span><br />
+                        &amp; <span class="text-golddark font-semibold">Mr. Atender Singh Sirohi</span>
+                    </p>
+                    <p class="font-ovo text-[.72rem] text-muted/70 leading-[1.8] mt-2">
+                        Meerut, Uttar Pradesh
+                    </p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="font-cinzel text-gold text-[.82rem] tracking-[.06em] mb-2">The Groom</div>
+                    <div class="w-6 h-px bg-gold/40 mx-auto mb-3"></div>
+                    <div class="font-name text-[2rem] text-gold leading-none mb-2">Vikrant</div>
+                    <p class="font-ovo text-[.78rem] text-muted leading-[1.8]">
+                        Son of<br />
+                        <span class="text-golddark font-semibold">Mrs. Girija</span><br />
+                        &amp; <span class="text-golddark font-semibold">Mr. Mahesh Dhamania</span>
+                    </p>
+                    <p class="font-ovo text-[.72rem] text-muted/70 leading-[1.8] mt-2">
+                        Jaipur, Rajasthan
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COUNTDOWN -->
+        <section
+            class="reveal w-full px-7 py-[52px] opacity-0 translate-y-[26px] transition duration-[750ms] ease-in-out"
+            id="countdown-sec">
+            <p
+                class="font-cinzel text-gold text-[clamp(1.45rem,5.5vw,1.85rem)] font-normal tracking-[.04em] text-center mb-1">
+                The Celebration Begins In</p>
+            <div class="text-center text-gold/50 text-base tracking-[.5em] mt-1">&#10022; &#10022; &#10022;</div>
+            <div class="w-12 h-px bg-gold/40 mx-auto mt-4 mb-8"></div>
+
+            <div id="cdContainer" class="flex justify-center items-start gap-2 flex-wrap">
+                <div class="text-center">
+                    <div class="overflow-hidden h-16 flex items-center justify-center"><span id="cd-days" data-cd="num"
+                            class="cdn">000</span></div>
+                    <div data-cd="fx"
+                        class="font-ovo text-goldmid text-[clamp(.72rem,2.8vw,.88rem)] text-center mt-[5px] opacity-0 transition-opacity duration-[800ms]">
+                        Days</div>
+                </div>
+                <div data-cd="fx"
+                    class="font-ovo text-[clamp(2rem,9vw,3rem)] text-goldmid leading-none -mt-3 opacity-0 transition-opacity duration-[600ms]">
+                    :</div>
+                <div class="text-center">
+                    <div class="overflow-hidden h-16 flex items-center justify-center"><span id="cd-hours" data-cd="num"
+                            class="cdn">00</span></div>
+                    <div data-cd="fx"
+                        class="font-ovo text-goldmid text-[clamp(.72rem,2.8vw,.88rem)] text-center mt-[5px] opacity-0 transition-opacity duration-[800ms]">
+                        Hours</div>
+                </div>
+                <div data-cd="fx"
+                    class="font-ovo text-[clamp(2rem,9vw,3rem)] text-goldmid leading-none -mt-3 opacity-0 transition-opacity duration-[600ms]">
+                    :</div>
+                <div class="text-center">
+                    <div class="overflow-hidden h-16 flex items-center justify-center"><span id="cd-mins" data-cd="num"
+                            class="cdn">00</span></div>
+                    <div data-cd="fx"
+                        class="font-ovo text-goldmid text-[clamp(.72rem,2.8vw,.88rem)] text-center mt-[5px] opacity-0 transition-opacity duration-[800ms]">
+                        Minutes</div>
+                </div>
+                <div data-cd="fx"
+                    class="font-ovo text-[clamp(2rem,9vw,3rem)] text-goldmid leading-none -mt-3 opacity-0 transition-opacity duration-[600ms]">
+                    :</div>
+                <div class="text-center">
+                    <div class="overflow-hidden h-16 flex items-center justify-center"><span id="cd-secs" data-cd="num"
+                            class="cdn">00</span></div>
+                    <div data-cd="fx"
+                        class="font-ovo text-goldmid text-[clamp(.72rem,2.8vw,.88rem)] text-center mt-[5px] opacity-0 transition-opacity duration-[800ms]">
+                        Seconds</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCHEDULE -->
+        <section
+            class="reveal w-full px-7 py-[52px] bg-softbg opacity-0 translate-y-[26px] transition duration-[750ms] ease-in-out">
+            <p
+                class="font-cinzel text-gold text-[clamp(1.45rem,5.5vw,1.85rem)] font-normal tracking-[.04em] text-center mb-1">
+                Schedule of Events</p>
+            <div class="text-center text-gold/50 text-base tracking-[.5em] mt-1">&#10022; &#10022; &#10022;</div>
+            <div class="w-12 h-px bg-gold/40 mx-auto mt-4 mb-8"></div>
+
+            <div class="flex flex-col max-w-[300px] mx-auto">
+                <div class="flex items-start gap-4">
+                    <div class="flex flex-col items-center self-stretch">
+                        <div class="w-[9px] h-[9px] shrink-0 mt-[5px] rounded-sm bg-muted rotate-45"></div>
+                        <div class="w-px flex-1 min-h-[44px] bg-muted/30"></div>
+                    </div>
+                    <div class="pb-5">
+                        <div class="font-ovo text-[1.15rem] font-semibold text-gold leading-none">7:00 PM</div>
+                        <div class="font-ovo text-[.88rem] text-muted mt-[3px]">Baarat Arrival</div>
+
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="flex flex-col items-center self-stretch">
+                        <div class="w-[9px] h-[9px] shrink-0 mt-[5px] rounded-sm bg-muted rotate-45"></div>
+                        <div class="w-px flex-1 min-h-[44px] bg-muted/30"></div>
+                    </div>
+                    <div class="pb-5">
+                        <div class="font-ovo text-[1.15rem] font-semibold text-gold leading-none">8:00 PM</div>
+                        <div class="font-ovo text-[.88rem] text-muted mt-[3px]">Wedding Feast</div>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="flex flex-col items-center">
+                        <div class="w-[9px] h-[9px] shrink-0 mt-[5px] rounded-sm bg-muted rotate-45"></div>
+                    </div>
+                    <div>
+                        <div class="font-ovo text-[1.15rem] font-semibold text-gold leading-none">Late Night</div>
+                        <div class="font-ovo text-[.88rem] text-muted mt-[3px]">Vidai</div>
+                        <div class="font-ovo text-[.76rem] text-muted/60 mt-[2px] italic">Under the canopy of stars
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VENUE -->
+        <section
+            class="reveal w-full px-7 py-[52px] opacity-0 translate-y-[26px] transition duration-[750ms] ease-in-out">
+            <p
+                class="font-cinzel text-gold text-[clamp(1.45rem,5.5vw,1.85rem)] font-normal tracking-[.04em] text-center mb-1">
+                Venue</p>
+            <div class="text-center text-gold/50 text-base tracking-[.5em] mt-1">&#10022; &#10022; &#10022;</div>
+            <div class="w-12 h-px bg-gold/40 mx-auto mt-4 mb-8"></div>
+
+            <div
+                class="px-6 py-7 text-center rounded-[14px] border border-gold/20 bg-[linear-gradient(135deg,rgba(255,250,248,.97),rgba(243,234,216,.92))]">
+                <svg class="mx-auto mb-3.5 block" width="30" height="30" viewBox="0 0 24 24" fill="none"
+                    stroke="#A67D2B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                    <circle cx="12" cy="9" r="2.5" />
+                </svg>
+                <div class="font-cinzel text-[1.15rem] text-gold mb-2">Amara Resorts (Kosha) &mdash; Grand 5</div>
+                <div class="font-ovo text-[.88rem] text-muted leading-[1.7]">
+                    NH 58, Kankerkhera<br />Meerut &mdash; 250001, Uttar Pradesh
+                </div>
+                <div class="mt-3 font-ovo text-[.84rem] text-golddark font-semibold">Saturday, 21 November 2026</div>
+
+                <a href="https://maps.app.goo.gl/5i14ZSK9du1tGPyFA?g_st=ac" target="_blank" rel="noopener"
+                    class="inline-block mt-[18px] px-[26px] py-[11px] border-[1.5px] border-gold rounded-[22px] bg-transparent text-gold font-cinzel text-[.82rem] tracking-[.06em] no-underline cursor-pointer transition-colors duration-200 hover:bg-gold hover:text-white">Get
+                    Directions &rarr;</a>
+            </div>
+        </section>
+
+
+
+        <!-- WEDDING PHOTO -->
+        <section
+            class="reveal w-full opacity-0 translate-y-[26px] transition duration-[750ms] ease-in-out overflow-hidden">
+            <div class="relative w-full">
+                <img src="assets/wedding-image.jpeg" alt="Rakshanda &amp; Vikrant"
+                    class="w-full h-auto block object-cover" />
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="bg-bg2 px-6 py-9 text-center">
+            <div class="font-cinzel text-gold text-[1.15rem] tracking-[.18em]">Rakshanda &amp; Vikrant</div>
+            <div class="font-ovo text-muted/60 text-[.78rem] tracking-[.16em] mt-1.5">21 &middot; 11 &middot; 2026</div>
+            <div class="font-ovo text-muted/55 text-[.8rem] mt-2">Amara Resorts, Meerut</div>
+            <div class="font-ovo text-muted/40 text-[.74rem] mt-3">With love &amp; gratitude &#10022;</div>
+        </footer>
+    </div>
+
+
+    <script>
+            /* ENVELOPE + INTRO VIDEO + AUDIO */
+            (function () {
+                const overlay = document.getElementById('weiOverlay');
+                const img = document.getElementById('weiImg');
+                const tap = document.getElementById('weiTapWrap');
+                const video = document.getElementById('weiVideo');
+                const audio = document.getElementById('weiAudio');
+                const audioBtn = document.getElementById('weiAudioBtn');
+                const iconPause = document.getElementById('weiIconPause');
+                const iconPlay = document.getElementById('weiIconPlay');
+                let started = false, unlocked = false, ended = false;
+
+                function unlockAudio() {
+                    if (unlocked) return;
+                    unlocked = true;
+                    const p = audio.play();
+                    if (p && p.then) p.then(function () { audio.pause(); audio.currentTime = 0; }).catch(function () { });
+                }
+
+                function start() {
+                    if (started) return;
+                    started = true;
+                    tap.classList.add('hidden');
+                    video.currentTime = 0;
+                    video.playbackRate = 2;
+                    const vp = video.play();
+                    if (vp && vp.catch) vp.catch(function () { });
+                    audio.volume = 1;
+                    const ap = audio.play();
+                    if (ap && ap.catch) ap.catch(function () { });
+                }
+
+                /* Image ko tabhi hatao jab video sach me play ho chuka ho (same box, same center => koi shift nahi) */
+                video.addEventListener('playing', function () {
+                    video.classList.remove('opacity-0');
+                    img.classList.add('hidden');
+                });
+
+                function end() {
+                    if (ended) return;
+                    ended = true;
+                    overlay.classList.replace('opacity-100', 'opacity-0');
+                    overlay.classList.add('pointer-events-none');
+                    setTimeout(function () { overlay.style.display = 'none'; }, 1400);
+                    audioBtn.classList.remove('invisible', 'opacity-0');
+                    audioBtn.classList.add('opacity-100');
+                }
+
+                overlay.addEventListener('touchstart', unlockAudio, { passive: true });
+                overlay.addEventListener('click', start);
+                video.addEventListener('ended', end);
+                video.addEventListener('timeupdate', function () {
+                    if (video.duration && video.currentTime >= video.duration - 0.15) end();
+                });
+
+                audioBtn.addEventListener('click', function () {
+                    if (audio.paused) {
+                        audio.play();
+                        iconPlay.classList.add('hidden'); iconPause.classList.remove('hidden');
+                    } else {
+                        audio.pause();
+                        iconPlay.classList.remove('hidden'); iconPause.classList.add('hidden');
+                    }
+                });
+
+                video.load();
+            })();
+
+        /* COUNTDOWN */
+        (function () {
+            const target = new Date(2026, 10, 21, 19, 0, 0); // November 21, 2026, 7:00 PM
+            const els = { d: 'cd-days', h: 'cd-hours', m: 'cd-mins', s: 'cd-secs' };
+            Object.keys(els).forEach(function (k) { els[k] = document.getElementById(els[k]); });
+            const prev = {};
+            let revealed = false;
+
+            /* gold gradient number style */
+            document.querySelectorAll('.cdn').forEach(function (e) {
+                e.className = 'block font-ovo text-[clamp(2.4rem,11vw,3.4rem)] bg-clip-text text-transparent bg-[linear-gradient(105deg,#B48C3D_0%,#B48C3D_25%,#cda95a_46%,#d8ba72_52%,#cda95a_58%,#B48C3D_75%,#B48C3D_100%)] bg-[length:300%_100%] [clip-path:inset(0_100%_0_0)] [-webkit-text-fill-color:transparent]';
+            });
+
+            function flip(el, value) {
+                if (el.textContent === value) return;
+                el.style.transition = 'transform .22s ease, opacity .22s ease';
+                el.style.transform = 'translateY(-55%)';
+                el.style.opacity = '0';
+                setTimeout(function () {
+                    el.textContent = value;
+                    el.style.transition = 'none';
+                    el.style.transform = 'translateY(55%)';
+                    el.style.opacity = '0';
+                    el.offsetHeight;
+                    el.style.transition = 'transform .28s ease, opacity .28s ease';
+                    el.style.transform = 'translateY(0)';
+                    el.style.opacity = '1';
+                }, 220);
+            }
+
+            function tick() {
+                const diff = target - new Date();
+                if (diff < 0) {
+                    document.getElementById('cdContainer').innerHTML =
+                        '<p class="font-cinzel text-gold text-[1.1rem] text-center w-full">The Wedding Day Has Arrived! &#128156;</p>';
+                    return;
+                }
+                const v = {
+                    d: String(Math.floor(diff / 86400000)),
+                    h: String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0'),
+                    m: String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0'),
+                    s: String(Math.floor((diff % 60000) / 1000)).padStart(2, '0')
+                };
+                Object.keys(v).forEach(function (k) {
+                    if (v[k] !== prev[k]) { flip(els[k], v[k]); prev[k] = v[k]; }
+                });
+            }
+
+            function revealCountdown() {
+                if (revealed) return;
+                revealed = true;
+                document.querySelectorAll('[data-cd]').forEach(function (e) {
+                    if (e.dataset.cd === 'num') e.classList.add('animate-inkshimmer');
+                    else e.classList.replace('opacity-0', 'opacity-90');
+                });
+            }
+
+            tick();
+            setInterval(tick, 1000);
+
+            const io = new IntersectionObserver(function (entries) {
+                if (entries[0].isIntersecting) { revealCountdown(); io.disconnect(); }
+            }, { threshold: 0.3 });
+            io.observe(document.getElementById('cdContainer'));
+        })();
+
+        /* SCROLL REVEAL */
+        (function () {
+            const io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('opacity-0', 'translate-y-[26px]');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+            document.querySelectorAll('.reveal').forEach(function (e) { io.observe(e); });
+        })();
+
+        /* RSVP */
+        function openRsvp() {
+            document.getElementById('rsvpModal').classList.remove('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeRsvp() {
+            document.getElementById('rsvpModal').classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('rsvpModal').addEventListener('click', function (e) {
+            if (e.target === this) closeRsvp();
+        });
+        function submitRsvp(e) {
+            e.preventDefault();
+            const data = {
+                name: document.getElementById('rsvpName').value,
+                attending: (document.querySelector('input[name="attending"]:checked') || {}).value || '',
+                guests: document.getElementById('rsvpGuests').value,
+                children: document.getElementById('rsvpChildren').value,
+                song: document.getElementById('rsvpSong').value
+            };
+            console.log('RSVP:', data);
+            document.getElementById('rsvpForm').style.display = 'none';
+            document.getElementById('rsvpSuccess').classList.remove('hidden');
+            setTimeout(closeRsvp, 3000);
+        }
+    </script>
+</body>
+
+</html>
